@@ -1,0 +1,28 @@
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
+button {
+	cursor: pointer;
+	outline: none;
+
+	&::-moz-focus-inner {
+		border: none;
+	}
+}
+
+// $inner-margin: 40px;
+// $button-size: 50px;
+// $text-color: #655330;
+// $body-color: #C9D8CF;
+// $hr-color: #CDEFD0;
+
+html {
+	font-size: 16px;
+}
+
+// body {
+// 	min-height: 100vh;
+// 	margin: 0;
+// 	background-color: $body-color;
+// }
