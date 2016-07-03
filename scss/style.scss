@@ -16,6 +16,7 @@ button {
 // $text-color: #655330;
 // $body-color: #C9D8CF;
 // $hr-color: #CDEFD0;
+$item-background-color: #fbfbea;
 
 html {
 	font-size: 16px;
@@ -28,7 +29,7 @@ html {
 // }
 
 div, p {
-	outline: 1px dotted black;
+	// outline: 1px dotted black;
 }
 
 .search-panel {
@@ -42,6 +43,7 @@ div, p {
 	border-radius: 5px;
 	box-shadow: 1px 4px 10px -3px gray;
 	padding: 3px;
+	background-color: $item-background-color;
 }
 
 .search-results {
@@ -52,22 +54,39 @@ div, p {
 }
 
 .item {
-	flex: 0 1 33%;
-	
+	flex: 0 1 350px;
+	margin: 5px;
+	border: 2px solid #aec7ae;
+	border-radius: 20px;
+	padding: 10px;
+	transition: 1s box-shadow;
+	background-color: $item-background-color;
+
+	&:hover {
+		box-shadow: 0 2px 7px 1px gray;
+	}
+
 	> a {
 		text-decoration: none;
 		color: initial;
 	}
 
+	.title {
+		text-align: center;
+		margin: 3px;
+	}
+
 	.thumbnail {
 		float: left;
-		margin: 15px;
+		margin: 5px 15px 0 5px;
+		width: 100px;
+		max-height: 200px;
+		border-radius: 20px;
+		border: 2px solid gray;
+	}
 
-		> img {
-			width: 100px;
-			max-height: 200px;
-			border-radius: 20px;
-			border: 2px solid gray;
-		}
+	.body {
+		text-align: justify;
+		margin-top: 0;
 	}
 }
