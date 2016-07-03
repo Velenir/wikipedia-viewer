@@ -15,7 +15,7 @@ const min = "https://en.wikipedia.org/w/api.php";
 // 		}
 // }) // end ajax
 
-const resultsCount = 10, thumbnailsize = 300;
+const resultsCount = 10, thumbnailsize = 100;
 
 function getSearchResults(term, cb) {
 	$.ajax({

@@ -27,17 +27,47 @@ html {
 // 	background-color: $body-color;
 // }
 
-.search {
-	&-panel {
-		text-align: center;
+div, p {
+	outline: 1px dotted black;
+}
+
+.search-panel {
+	text-align: center;
+}
+
+.search-input > input {
+	width: 300px;
+	font-size: 1.7em;
+	border: 2px solid #aec7ae;
+	border-radius: 5px;
+	box-shadow: 1px 4px 10px -3px gray;
+	padding: 3px;
+}
+
+.search-results {
+	display: flex;
+	flex-flow: row wrap;
+	margin: 40px 20px 20px;
+	text-align: initial;
+}
+
+.item {
+	flex: 0 1 33%;
+	
+	> a {
+		text-decoration: none;
+		color: initial;
 	}
 
-	&-input > input {
-		width: 300px;
-		font-size: 1.7em;
-		border: 2px solid #aec7ae;
-		border-radius: 5px;
-		box-shadow: 1px 4px 10px -3px gray;
-		padding: 3px;
+	.thumbnail {
+		float: left;
+		margin: 15px;
+
+		> img {
+			width: 100px;
+			max-height: 200px;
+			border-radius: 20px;
+			border: 2px solid gray;
+		}
 	}
 }
