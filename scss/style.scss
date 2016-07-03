@@ -26,3 +26,18 @@ html {
 // 	margin: 0;
 // 	background-color: $body-color;
 // }
+
+.search {
+	&-panel {
+		text-align: center;
+	}
+
+	&-input > input {
+		width: 300px;
+		font-size: 1.7em;
+		border: 2px solid #aec7ae;
+		border-radius: 5px;
+		box-shadow: 1px 4px 10px -3px gray;
+		padding: 3px;
+	}
+}
