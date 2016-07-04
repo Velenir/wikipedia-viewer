@@ -1,2 +1,2 @@
-# Random Quote Generator
-A simple random quote generator made as part of FreeCodeCamp course.
+# Wikipedia Viewer
+A simple wikipedia viewer made as part of FreeCodeCamp course.
