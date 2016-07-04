@@ -55,7 +55,7 @@ gulp.task('sass', function() {
 
 // Compile jade into HTML
 gulp.task('jade', function() {
-	let locals = {title: "Random Quote Generator"};
+	let locals = {title: "Wikipedia Viewer"};
 
 	return gulp.src(src.jade)
 		.pipe(jade({ locals }))
