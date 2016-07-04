@@ -135,7 +135,7 @@ const $input = $("#search-input");
 $input.on('input', (e) => {console.log("input", $input.val(), e);});
 // $input.on('change', (e) => {console.log("change", $input.val(), e);});
 
-input.oninput = _.throttle(searchWiki, 500, {leading: false, trailing: true});
+input.oninput = _.debounce(searchWiki, 500, {leading: false, trailing: true});
 document.getElementById('random').onclick = getRandomPage;
 
 function searchWiki() {
