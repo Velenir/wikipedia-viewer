@@ -94,7 +94,7 @@ function fillResultsPanel(data) {
 	}
 
 	function appendFragment() {
-		if(resultsPanel.hasChildNodes()) clearResultsPanel();
+		clearResultsPanel();
 		resultsPanel.appendChild(fragment);
 		resultsPanel.classList.add("opaque");
 	}
