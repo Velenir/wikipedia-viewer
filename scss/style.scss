@@ -50,6 +50,7 @@ div, p {
 .search-results {
 	display: flex;
 	flex-flow: row wrap;
+	justify-content: center;
 	margin: 40px 20px 20px;
 	text-align: initial;
 }
@@ -62,6 +63,8 @@ div, p {
 	padding: 10px;
 	transition: 1s box-shadow;
 	background-color: $item-background-color;
+	text-decoration: none;
+	color: initial;
 
 	&:hover {
 		box-shadow: 0 2px 7px 1px gray;
