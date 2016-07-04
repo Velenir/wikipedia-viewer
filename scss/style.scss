@@ -14,19 +14,18 @@ button {
 // $inner-margin: 40px;
 // $button-size: 50px;
 // $text-color: #655330;
-// $body-color: #C9D8CF;
-// $hr-color: #CDEFD0;
+$body-color: #eae1d4;
+$button-color: #dcd2c4;
 $item-background-color: #fbfbea;
+$heading-color: #3e3e5d;
 
 html {
 	font-size: 16px;
 }
 
-// body {
-// 	min-height: 100vh;
-// 	margin: 0;
-// 	background-color: $body-color;
-// }
+body {
+	background-color: $body-color;
+}
 
 div, p {
 	// outline: 1px dotted black;
@@ -35,6 +34,10 @@ div, p {
 .search-panel {
 	text-align: center;
 	padding: 10px;
+
+	> h1 {
+		color: $heading-color;
+	}
 }
 
 .search-input {
@@ -53,12 +56,15 @@ div, p {
 	}
 
 	> button {
-		margin-left: 2em;
-		font-size: 1.2em;
 		position: absolute;
 		right: 0;
 		top: 50%;
 		transform: translateY(-50%);
+		padding: 0;
+		border-radius: 8px;
+		background-color: $button-color;
+		width: 2.7em;
+		height: 2.7em;
 	}
 }
 
@@ -114,4 +120,20 @@ div, p {
 @keyframes fadein {
 	from { opacity: 0; }
 	to { opacity: 1; }
+}
+
+.cricles, .rects {
+	stroke: black;
+}
+
+.circles {
+	fill: #374242;
+}
+
+.rects {
+	fill: #fbf8f8;
+
+	svg:active & {
+		fill: #ece9e9;
+	}
 }
