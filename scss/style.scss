@@ -37,14 +37,21 @@ div, p {
 	padding: 10px;
 }
 
-.search-input > input {
-	width: 300px;
-	font-size: 1.7em;
-	border: 2px solid #aec7ae;
-	border-radius: 5px;
-	box-shadow: 1px 4px 10px -3px gray;
-	padding: 3px;
-	background-color: $item-background-color;
+.search-input {
+	> input {
+		width: 400px;
+		font-size: 1.5em;
+		border: 2px solid #aec7ae;
+		border-radius: 5px;
+		box-shadow: 1px 4px 10px -3px gray;
+		padding: 3px;
+		background-color: $item-background-color;
+	}
+
+	> button {
+		margin-left: 2em;
+		font-size: 1.2em;
+	}
 }
 
 .search-results {

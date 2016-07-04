@@ -1,50 +1,13 @@
 const ex = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts%7Cpageimages&generator=search&exsentences=2&exlimit=10&exintro=1&explaintext=1&piprop=thumbnail&pithumbsize=300&pilimit=10&gsrnamespace=0&gsrlimit=10&gsrsearch=";
 const wikiAPIurl = "https://en.wikipedia.org/w/api.php";
 
+const input = document.getElementById('search-input');
 let resultsPanel = document.querySelector('.search-results');
 
-
-// $.ajax({
-// 	url: mainLink,
-// 	type: "GET",
-// 	dataType: "jsonp",
-// 	success: function (data) {
-// 	console.log(data);
-// // and other stuff i do with the data i get
-// 	},
-// 	xhrFields: {
-// 				withCredentials: false
-// 		}
-// }) // end ajax
 
 const resultsCount = 10, thumbnailsize = 100;
 
 function requestPages(term, cb) {
-	// $.ajax({
-	// 	url: wikiAPIurl,
-	// 	method: "GET",
-	// 	dataType: "jsonp",
-	// 	data: {
-	// 		action: "query",
-	// 		format: "json",
-	// 		generator: "search",
-	// 		gsrnamespace: 0,
-	// 		gsrlimit: resultsCount,
-	// 		gsrsearch: term,
-	// 		prop: "extracts|pageimages",
-	// 		exsentences: 2,
-	// 		exlimit: resultsCount,
-	// 		exintro: 1,
-	// 		explaintext: 1,
-	// 		piprop: "thumbnail",
-	// 		pithumbsize: thumbnailsize,
-	// 		pilimit: resultsCount
-	// 	}
-	// })
-	// .then(cb, function (_, status, error) {
-	// 	console.log("Error", error, ", status", status);
-	// });
-
 	JSONP.get(wikiAPIurl, {
 		action: "query",
 		format: "json",
@@ -64,6 +27,24 @@ function requestPages(term, cb) {
 		cb);
 }
 
+
+function requestRandomPage(cb) {
+	JSONP.get(wikiAPIurl, {
+		action: "query",
+		format: "json",
+		generator: "random",
+		redirects: 1,
+		grnnamespace: 0,
+		prop: "extracts|pageimages",
+		exsentences: 2,
+		exintro: 1,
+		explaintext: 1,
+		piprop: "thumbnail",
+		pithumbsize: thumbnailsize
+	},
+		cb);
+}
+
 function logResult() {
 	requestPages("Time", data => {
 		const pages = data.query.pages;
@@ -75,7 +56,6 @@ function logResult() {
 }
 
 function displaySearchResults(data) {
-	// if(resultsPanel.hasChildNodes()) clearResultsPanel();
 
 	fillResultsPanel(data.query.pages);
 }
@@ -93,12 +73,6 @@ function fillResultsPanel(data) {
 		// console.log(key, "title:", title, ", pageid:", pageid, ", extract:", extract, ", img:", thumbnail ? thumbnail.source : null);
 		fragment.appendChild(constructItem(pages[key]));
 	}
-
-	// add results only after all images have been loaded
-	Promise.all(promises).then(() => {
-		if(resultsPanel.hasChildNodes()) clearResultsPanel();
-		resultsPanel.appendChild(fragment);
-	});
 
 	function constructItem({title, pageid, extract, thumbnail}) {
 		const h3 = document.createElement("h3");
@@ -137,6 +111,12 @@ function fillResultsPanel(data) {
 
 		return item;
 	}
+
+	// add results only after all images have been loaded
+	return Promise.all(promises).then(() => {
+		if(resultsPanel.hasChildNodes()) clearResultsPanel();
+		resultsPanel.appendChild(fragment);
+	});
 }
 
 function clearResultsPanel() {
@@ -148,12 +128,24 @@ function clearResultsPanel() {
 const $input = $("#search-input");
 // $input.on('keydown', (e) => {console.log("keydown", e.key);});
 // $input.on('keyup', (e) => {console.log("keyup", e.key);});
-// $input.on('input', (e) => {console.log("input", $input.val(), e);});
+$input.on('input', (e) => {console.log("input", $input.val(), e);});
 // $input.on('change', (e) => {console.log("change", $input.val(), e);});
-document.getElementById('search-input').oninput = _.throttle(searchWiki, 500, {leading: false, trailing: true});
+
+input.oninput = _.throttle(searchWiki, 500, {leading: false, trailing: true});
+document.getElementById('random').onclick = getRandomPage;
 
 function searchWiki() {
 	console.log("invoked thrtl");
 	if(this.value) requestPages(this.value, fillResultsPanel);
 	else clearResultsPanel();
+}
+
+function getRandomPage() {
+	console.log("random");
+	requestRandomPage(function (data) {
+		fillResultsPanel(data).then(function () {
+			const pages = data.query.pages;
+			input.value = pages[Object.keys(pages)[0]].title;
+		});		
+	});
 }
