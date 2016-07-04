@@ -60,6 +60,7 @@ div, p {
 	justify-content: center;
 	margin: 40px 20px 20px;
 	text-align: initial;
+	animation: 1s fadein;
 }
 
 .item {
@@ -100,4 +101,9 @@ div, p {
 		text-align: justify;
 		margin-top: 0;
 	}
+}
+
+@keyframes fadein {
+	from { opacity: 0; }
+	to { opacity: 1; }
 }

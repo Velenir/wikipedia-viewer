@@ -112,11 +112,15 @@ function fillResultsPanel(data) {
 		return item;
 	}
 
-	// add results only after all images have been loaded
-	return Promise.all(promises).then(() => {
+	function appendFragment() {
 		if(resultsPanel.hasChildNodes()) clearResultsPanel();
 		resultsPanel.appendChild(fragment);
-	});
+		resultsPanel.classList.add("opaque");
+	}
+
+	// add results only after all images have been loaded
+	// add what yyou have on fail anyway
+	return Promise.all(promises).then(appendFragment, appendFragment);
 }
 
 function clearResultsPanel() {
@@ -142,10 +146,11 @@ function searchWiki() {
 
 function getRandomPage() {
 	console.log("random");
+
 	requestRandomPage(function (data) {
 		fillResultsPanel(data).then(function () {
 			const pages = data.query.pages;
 			input.value = pages[Object.keys(pages)[0]].title;
-		});		
+		});
 	});
 }
